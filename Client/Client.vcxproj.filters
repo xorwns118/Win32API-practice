@@ -23,6 +23,12 @@
     <Filter Include="Engine\03. Manager\KeyMgr">
       <UniqueIdentifier>{5e8c5e59-0658-4c00-8268-a88547fa0dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object">
+      <UniqueIdentifier>{dcb0b24a-9f0d-4a4a-9123-2d472aeadd1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\CTimeMgr">
+      <UniqueIdentifier>{356a8694-5883-44e6-87f7-0bcfce05a0c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -47,6 +53,15 @@
       <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CObject.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>Engine\03. Manager\CTimeMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -69,5 +84,14 @@
       <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainTest.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>Engine\03. Manager\CTimeMgr</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

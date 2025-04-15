@@ -43,14 +43,21 @@ class CCore
 	SINGLE(CCore); // 동적할당 방식이 아니기 때문에 해제를 신경쓰지 않아도 된다. => 지울 수 없다.
 
 private:
-	HWND	m_hWnd; // 메인 윈도우 핸들
+	HWND	m_hWnd;			// 메인 윈도우 핸들
 	POINT	m_ptResolution; // 메인 윈도우 해상도
+	HDC		m_hDC;			// 메인 윈도우에 Draw 할 DC
+
+	HBITMAP	m_hBit;
+	HDC		m_memDC;
 
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	void progress();
 
 private:
-	CCore();
-	~CCore();
+	void update();
+	void render();
+
+public:
+	HWND GetMainHWnd() { return m_hWnd; }
 };
