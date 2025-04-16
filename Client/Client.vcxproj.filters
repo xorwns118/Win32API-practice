@@ -41,6 +41,15 @@
     <Filter Include="Engine\05. Scene\Scene_Tool">
       <UniqueIdentifier>{387b3a8d-84a3-435b-98ca-2dd41ce31ba6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Note">
+      <UniqueIdentifier>{1f7e867a-1959-40f8-9403-8388ecd0dc7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Note\MindMap">
+      <UniqueIdentifier>{c8cdf9c9-1d6b-444d-a60e-72c3d76af322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Note\Study_Guide">
+      <UniqueIdentifier>{8bdc9c33-1a90-48e7-8dba-ae6a014ca2a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -99,6 +108,18 @@
     <Image Include="Client.ico">
       <Filter>Default\리소스 파일</Filter>
     </Image>
+    <Image Include="..\..\..\..\..\..\Download\01~04.png">
+      <Filter>Note\MindMap</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Download\05~08.png">
+      <Filter>Note\MindMap</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Download\09~12.png">
+      <Filter>Note\MindMap</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Download\13~16.png">
+      <Filter>Note\MindMap</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -129,5 +150,19 @@
     <ClCompile Include="CScene_Tool.cpp">
       <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01~04.md">
+      <Filter>Note\Study_Guide</Filter>
+    </None>
+    <None Include="05~08.md">
+      <Filter>Note\Study_Guide</Filter>
+    </None>
+    <None Include="09~12.md">
+      <Filter>Note\Study_Guide</Filter>
+    </None>
+    <None Include="13~16.md">
+      <Filter>Note\Study_Guide</Filter>
+    </None>
   </ItemGroup>
 </Project>
