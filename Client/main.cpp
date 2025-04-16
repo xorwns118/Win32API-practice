@@ -52,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, /*실행 된 프로세스의 시
 
         return FALSE;
     }
-
+    
     // 단축키 테이블 정보 로딩
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 

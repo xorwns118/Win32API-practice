@@ -29,6 +29,18 @@
     <Filter Include="Engine\03. Manager\CTimeMgr">
       <UniqueIdentifier>{356a8694-5883-44e6-87f7-0bcfce05a0c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Scene">
+      <UniqueIdentifier>{4a69e86f-be77-45a3-90cb-5b8bd1e2be4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\SceneMgr">
+      <UniqueIdentifier>{7cbcad1d-ecdd-424e-8158-7d0fd9789289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Start">
+      <UniqueIdentifier>{04a133b5-bf43-42b4-a9ff-999bf164f580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Tool">
+      <UniqueIdentifier>{387b3a8d-84a3-435b-98ca-2dd41ce31ba6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -62,6 +74,18 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Engine\03. Manager\CTimeMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Engine\05. Scene\Scene_Tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -92,6 +116,18 @@
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Engine\03. Manager\CTimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,12 +3,10 @@
 
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
-
+#include "CSceneMgr.h"
 #include "CObject.h"
 
 //CCore* CCore::g_pInst = nullptr;
-
-CObject g_obj;
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -52,9 +50,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// Manager 초기화
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
-
-	g_obj.SetPos(Vec2( float(m_ptResolution.x / 2), float(m_ptResolution.y / 2)));
-	g_obj.SetScale(Vec2( 100, 100 ));
+	CSceneMgr::GetInst()->init();
 
 	return S_OK;
 }
@@ -77,51 +73,26 @@ void CCore::progress()
 
 	// Manager Update
 	CTimeMgr::GetInst()->update();
+	CKeyMgr::GetInst()->update();
 
-	update();
+	CSceneMgr::GetInst()->update();
 
-	render();
-}
-
-void CCore::update()
-{
-	Vec2 vPos = g_obj.GetPos();
-
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) // 0x8000, 리턴값에서 상위 비트가 on 되어있으면 true
-	{
-		vPos.x -= 200.f * fDT;
-	}
-
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	{
-		vPos.x += 200.f * fDT;
-	}
-
-	g_obj.SetPos(vPos);
-}
-
-void CCore::render()
-{
-	// 화면 clear
+	// =========
+	// Rendering
+	// =========
+	// 화면 Clear
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
-	// 그리기
-	Vec2 vPos = g_obj.GetPos();
-	Vec2 vScale = g_obj.GetScale();
-
-	Rectangle(m_memDC, int(vPos.x - vScale.x / 2.f)
-				   , int(vPos.y - vScale.y / 2.f)
-				   , int(vPos.x + vScale.x / 2.f)
-				   , int(vPos.y + vScale.y / 2.f));
+	CSceneMgr::GetInst()->render(m_memDC); // 그려질 목적지를 알기 위해 memDC 를 인자로 받음
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
-		 , m_memDC, 0, 0, SRCCOPY);
+		, m_memDC, 0, 0, SRCCOPY);
 
 	// 이 부분에서 Frame drop이 꽤 크게 일어났지만 고정비용이기 때문에
 	// 나머지 작업에서 갑자기 크게 떨어질 일은 없음 => 복사해서 그리는 작업은 항상 일치함.
 	// Debug Mode 에서는 표준라이브러리에 예외처리가 상당히 많이 들어가있기 때문에 Frame Drop률이 큼
 	// 게임을 만들고 빌드할 땐 Realese 버전으로
-	
+
 	// CPU 가 이 수많은 반복문을 처리하기엔 너무 빡세기 때문에 등장한 장치가 GPU
 	// WinApi 에선 CPU 만을 이용한 수업, GPU는 DirecX 사용부터
 }
