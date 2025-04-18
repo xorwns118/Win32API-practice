@@ -20,7 +20,7 @@ public:
 	virtual void Enter() = 0; // 해당 Scene 에 진입 시 호출
 	virtual void Exit() = 0;  // 해당 Scene 을 탈출 시 호출
 
-protected:
+public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType) // 클래스는 헤더에 구현하면 함수 호출 비용이 드는것이 아닌 복사 붙여넣기 효과
 	{
 		m_arrObj[(UINT)_eType].push_back(_pObj);

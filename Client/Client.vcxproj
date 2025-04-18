@@ -132,7 +132,10 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CMissile.h" />
+    <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObject.h" />
+    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CScene_Start.h" />
     <ClInclude Include="CScene_Tool.h" />
@@ -148,7 +151,10 @@
   <ItemGroup>
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="CMissile.cpp" />
+    <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="CScene_Tool.cpp" />
@@ -161,18 +167,11 @@
     <ResourceCompile Include="Client.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\..\Download\01~04.png" />
-    <Image Include="..\..\..\..\..\..\Download\05~08.png" />
-    <Image Include="..\..\..\..\..\..\Download\09~12.png" />
-    <Image Include="..\..\..\..\..\..\Download\13~16.png" />
     <Image Include="Client.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="01~04.md" />
-    <None Include="05~08.md" />
-    <None Include="09~12.md" />
-    <None Include="13~16.md" />
+    <None Include="17~20.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
