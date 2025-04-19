@@ -38,7 +38,10 @@ void CTimeMgr::update()
 
 	// 이전 카운트 값을 현재값으로 갱신 (다음번의 계산을 위해)
 	m_llPrevCount = m_llCurCount;
+}
 
+void CTimeMgr::render()
+{
 	++m_iCallCount;
 	m_dAcc += m_dDT; // DT 누적
 

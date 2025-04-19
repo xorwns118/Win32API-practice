@@ -26,9 +26,6 @@
     <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{dcb0b24a-9f0d-4a4a-9123-2d472aeadd1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\03. Manager\CTimeMgr">
-      <UniqueIdentifier>{356a8694-5883-44e6-87f7-0bcfce05a0c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\05. Scene">
       <UniqueIdentifier>{4a69e86f-be77-45a3-90cb-5b8bd1e2be4f}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,24 @@
     </Filter>
     <Filter Include="Engine\04. Object\Missile">
       <UniqueIdentifier>{de7bed3b-230f-44f3-a274-fd8bd869ed82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06. Resource">
+      <UniqueIdentifier>{09dccdb8-0bca-46e1-8567-8f4f99797282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06. Resource\Texture">
+      <UniqueIdentifier>{07aa1d7a-6ebe-4335-b983-fe8982c002a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06. Resource\Sound">
+      <UniqueIdentifier>{125beb53-8be6-4303-bfcc-d1129dc5a290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\TimeMgr">
+      <UniqueIdentifier>{356a8694-5883-44e6-87f7-0bcfce05a0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\PathMgr">
+      <UniqueIdentifier>{cc242adf-2e7c-4782-88c1-664266d16661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\ResourceMgr">
+      <UniqueIdentifier>{ee49a843-fde5-49fb-b702-57cada949d56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +96,7 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
-      <Filter>Engine\03. Manager\CTimeMgr</Filter>
+      <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
       <Filter>Engine\05. Scene</Filter>
@@ -103,6 +118,21 @@
     </ClInclude>
     <ClInclude Include="CMissile.h">
       <Filter>Engine\04. Object\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="CRes.h">
+      <Filter>Engine\06. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Engine\06. Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Engine\06. Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>Engine\03. Manager\PathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CResMgr.h">
+      <Filter>Engine\03. Manager\ResourceMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,7 +163,7 @@
       <Filter>Engine\04. Object</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
-      <Filter>Engine\03. Manager\CTimeMgr</Filter>
+      <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Engine\05. Scene</Filter>
@@ -156,8 +186,23 @@
     <ClCompile Include="CMissile.cpp">
       <Filter>Engine\04. Object\Missile</Filter>
     </ClCompile>
+    <ClCompile Include="CRes.cpp">
+      <Filter>Engine\06. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Engine\06. Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Engine\06. Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>Engine\03. Manager\PathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CResMgr.cpp">
+      <Filter>Engine\03. Manager\ResourceMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="17~20.md" />
+    <None Include="21~24.md" />
   </ItemGroup>
 </Project>

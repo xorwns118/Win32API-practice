@@ -4,7 +4,7 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
-#include "CObject.h"
+#include "CPathMgr.h"
 
 //CCore* CCore::g_pInst = nullptr;
 
@@ -48,6 +48,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	DeleteObject(hOldBit); // 반환된 이전의 비트맵을 삭제
 
 	// Manager 초기화
+	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CSceneMgr::GetInst()->init();
@@ -87,6 +88,8 @@ void CCore::progress()
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
 		, m_memDC, 0, 0, SRCCOPY);
+
+	//CTimeMgr::GetInst()->render();
 
 	// 이 부분에서 Frame drop이 꽤 크게 일어났지만 고정비용이기 때문에
 	// 나머지 작업에서 갑자기 크게 떨어질 일은 없음 => 복사해서 그리는 작업은 항상 일치함.

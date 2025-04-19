@@ -26,6 +26,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, /*실행 된 프로세스의 시
                      _In_ LPWSTR lpCmdLine, /*CMD 명령어로 기본 프로그램 시작할 때 옵션 인자 값, 게임을 다루면서 쓰지 않을 예정*/
                      _In_ int nCmdShow)
 {
+    // 메모리 릭(누수) 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(231); // 쓰고나면 꼭 지우던 주석처리하던 하자
+
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
