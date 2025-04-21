@@ -65,6 +65,15 @@
     <Filter Include="Engine\03. Manager\ResourceMgr">
       <UniqueIdentifier>{ee49a843-fde5-49fb-b702-57cada949d56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Component">
+      <UniqueIdentifier>{940040cb-7308-4cb3-b005-eec73a644360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module">
+      <UniqueIdentifier>{de87d942-1f37-4dbf-b696-39c9a98a4aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\CollisionMgr">
+      <UniqueIdentifier>{c234ca65-608a-48a4-9bbd-c6bc71c15a9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -134,6 +143,15 @@
     <ClInclude Include="CResMgr.h">
       <Filter>Engine\03. Manager\ResourceMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\07. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Engine\08. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -201,8 +219,17 @@
     <ClCompile Include="CResMgr.cpp">
       <Filter>Engine\03. Manager\ResourceMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\07. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>Engine\08. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="21~24.md" />
+    <None Include="25~28.md" />
   </ItemGroup>
 </Project>

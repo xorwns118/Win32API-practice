@@ -5,8 +5,7 @@
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
-
-//CCore* CCore::g_pInst = nullptr;
+#include "CCollisionMgr.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -14,6 +13,8 @@ CCore::CCore()
 	, m_hDC(0)
 	, m_hBit(0)
 	, m_memDC(0)
+	, m_arrBrush{}
+	, m_arrPen{}
 {
 
 }
@@ -24,6 +25,11 @@ CCore::~CCore()
 
 	DeleteDC(m_memDC); // ID를 받아와 썼기 때문에 해제 요청
 	DeleteObject(m_hBit);
+
+	for (int i = 0; i < (UINT)PEN_TYPE::END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -46,6 +52,9 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// BitMap : 해상도 영역만큼의 픽셀 데이터 묶음
 	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit); // 이전에 쓰던 비트맵을 선택해줌
 	DeleteObject(hOldBit); // 반환된 이전의 비트맵을 삭제
+
+	// 자주 사용할 펜 및 브러쉬 생성
+	CreateBrushPen();
 
 	// Manager 초기화
 	CPathMgr::GetInst()->init();
@@ -77,6 +86,7 @@ void CCore::progress()
 	CKeyMgr::GetInst()->update();
 
 	CSceneMgr::GetInst()->update();
+	CCollisionMgr::GetInst()->update();
 
 	// =========
 	// Rendering
@@ -89,7 +99,7 @@ void CCore::progress()
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
 		, m_memDC, 0, 0, SRCCOPY);
 
-	//CTimeMgr::GetInst()->render();
+	CTimeMgr::GetInst()->render();
 
 	// 이 부분에서 Frame drop이 꽤 크게 일어났지만 고정비용이기 때문에
 	// 나머지 작업에서 갑자기 크게 떨어질 일은 없음 => 복사해서 그리는 작업은 항상 일치함.
@@ -98,4 +108,15 @@ void CCore::progress()
 
 	// CPU 가 이 수많은 반복문을 처리하기엔 너무 빡세기 때문에 등장한 장치가 GPU
 	// WinApi 에선 CPU 만을 이용한 수업, GPU는 DirecX 사용부터
+}
+
+void CCore::CreateBrushPen()
+{
+	// hollow brush
+	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+
+	// red blue green pen
+	m_arrPen[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 }

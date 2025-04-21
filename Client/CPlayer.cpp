@@ -11,12 +11,17 @@
 
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 	: m_pTex(nullptr)
 {
 	// Texture 로딩하기
 	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+
+	CreateCollider();
+	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
+	GetCollider()->SetScale(Vec2(20.f, 40.f));
 }
 
 CPlayer::~CPlayer()
@@ -83,6 +88,9 @@ void CPlayer::render(HDC _dc)
 	// 마젠타 색상
 	// 255, 0, 255 로 이루어진 색상, 주로 빈공간에 채워넣고 무시되는 용도로 사용하고,
 	// 거의 안쓰이는 색상이기에 빈공간을 채울 때 주로 사용
+
+	// 컴포넌트(충돌체, etc...) 가 있는 경우 렌더
+	component_render(_dc);
 }
 
 void CPlayer::CreateMissile()

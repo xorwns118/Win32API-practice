@@ -8,6 +8,7 @@ CMissile::CMissile()
 	, m_vDir(Vec2(0.f, 1.f))
 {
 	m_vDir.Normalize();
+	CreateCollider();
 }
 
 CMissile::~CMissile()

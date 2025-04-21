@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CTexture.h"
 
-#include "CCore.h";
+#include "CCore.h"
 
 CTexture::CTexture()
 	: m_hBit(0)

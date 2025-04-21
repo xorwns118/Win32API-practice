@@ -13,7 +13,8 @@ public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
-	void update();
+	void update(); // 오브젝트 업데이트
+	void finalupdate(); // 그 외 작업을 마무리해주는 업데이트
 	void render(HDC _dc);
 
 	// 순수 가상함수, 부모 클래스에 해당하는 씬은 직접 객체생성이 불가능해짐 => 추상 클래스
@@ -25,6 +26,8 @@ public:
 	{
 		m_arrObj[(UINT)_eType].push_back(_pObj);
 	}
+
+	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType) { return m_arrObj[(UINT)_eType]; }
 
 public:
 	CScene();
