@@ -5,7 +5,7 @@ class CTimeMgr
 {
 	SINGLE(CTimeMgr);
 private:
-	LARGE_INTEGER	m_llCurCount;
+	LARGE_INTEGER	m_llCurCount;	// Large_Integer => union
 	LARGE_INTEGER	m_llPrevCount;
 	LARGE_INTEGER	m_llFrequency;
 

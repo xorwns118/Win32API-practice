@@ -6,6 +6,7 @@
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
+#include "CEventMgr.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -81,11 +82,18 @@ void CCore::progress()
 		callCount = 0;
 	}*/
 
+	// ==============
 	// Manager Update
+	// ==============
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
 
+	// ============
+	// Scene Update
+	// ============
 	CSceneMgr::GetInst()->update();
+	
+	// 충돌 체크
 	CCollisionMgr::GetInst()->update();
 
 	// =========
@@ -108,6 +116,11 @@ void CCore::progress()
 
 	// CPU 가 이 수많은 반복문을 처리하기엔 너무 빡세기 때문에 등장한 장치가 GPU
 	// WinApi 에선 CPU 만을 이용한 수업, GPU는 DirecX 사용부터
+
+	// ==============
+	// 이벤트 지연처리
+	// ==============
+	CEventMgr::GetInst()->update();
 }
 
 void CCore::CreateBrushPen()

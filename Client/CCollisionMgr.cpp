@@ -38,6 +38,7 @@ void CCollisionMgr::CollisionUpdateGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 	// 반환 타입이 래퍼런스이지만 & 안쓰면 지역변수에 복사가 되는 상황이기 때문에 & 꼭 써줘야함
 	const vector<CObject*>& vecLeft = pCurScene->GetGroupObject(_eLeft);
 	const vector<CObject*>& vecRight = pCurScene->GetGroupObject(_eRight);
+	map<ULONGLONG, bool>::iterator iter;
 
 	for (size_t i = 0; i < vecLeft.size(); ++i)
 	{
@@ -51,13 +52,50 @@ void CCollisionMgr::CollisionUpdateGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			if (vecRight[j]->GetCollider() == nullptr || vecLeft[i] == vecRight[j])
 				continue;
 
-			if (IsCollision(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()))
-			{
+			CCollider* pLeftCol = vecLeft[i]->GetCollider();
+			CCollider* pRightCol = vecRight[j]->GetCollider();
 
+			// 두 충돌체 조합 아이디 생성
+			COLLIDER_ID ID;
+			ID.iLeft_id = pLeftCol->GetID();
+			ID.iRight_id = pRightCol->GetID();
+
+			iter = m_mapColInfo.find(ID.ID);
+
+			// 충돌 정보가 미 등록 상태인 경우 등록(충돌하지 않았다. 로)
+			if (iter == m_mapColInfo.end())
+			{
+				m_mapColInfo.insert(make_pair(ID.ID, false));
+				iter = m_mapColInfo.find(ID.ID);
+			}
+
+			if (IsCollision(pLeftCol, pRightCol))
+			{
+				// 현재 충돌중이다.
+				if (iter->second)
+				{
+					// 이전에도 충돌하고 있었다.
+					pLeftCol->OnCollision(pRightCol);
+					pRightCol->OnCollision(pLeftCol);
+				}
+				else
+				{
+					// 이전에는 충돌하지 않았다.
+					pLeftCol->OnCollisionEnter(pRightCol);
+					pRightCol->OnCollisionEnter(pLeftCol);
+					iter->second = true;
+				}
 			}
 			else
 			{
-
+				// 현재 충돌하고 있지 않다.
+				if (iter->second)
+				{
+					// 이전에는 충돌하고 있었다.
+					pLeftCol->OnCollisionExit(pRightCol);
+					pRightCol->OnCollisionExit(pLeftCol);
+					iter->second = false;
+				}
 			}
 		}
 	}
@@ -65,7 +103,18 @@ void CCollisionMgr::CollisionUpdateGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 bool CCollisionMgr::IsCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 {
+	Vec2 vLeftPos = _pLeftCol->GetFinalPos();
+	Vec2 vLeftScale = _pLeftCol->GetScale();
 
+	Vec2 vRightPos = _pRightCol->GetFinalPos();
+	Vec2 vRightScale = _pRightCol->GetScale();
+
+
+	if (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) / 2.f
+		&& abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) / 2.f)
+	{
+		return true;
+	}
 
 	return false;
 }

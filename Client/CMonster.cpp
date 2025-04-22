@@ -38,3 +38,14 @@ void CMonster::update()
 	SetPos(vCurPos);
 	m_vCenterPos;
 }
+
+
+void CMonster::OnColliderEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	/*if (pOtherObj->GetName() == L"Missile")
+	{
+
+	}*/
+}
