@@ -100,6 +100,7 @@ void CPlayer::CreateMissile()
 
 	// Missile Object
 	CMissile* pMissile = new CMissile;
+	pMissile->SetName(L"Missile_Player");
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
 	pMissile->SetDir(Vec2(0.f, -1.f));

@@ -7,15 +7,40 @@ CObject::CObject()
 	: m_vPos{}
 	, m_vScale{}
 	, m_pCollider(nullptr)
+	, m_pAnimator(nullptr)
 	, m_bAlive(true)
 {
 
+}
+
+CObject::CObject(const CObject& _origin)
+	: m_strName(_origin.m_strName)
+	, m_vPos(_origin.m_vPos)
+	, m_vScale(_origin.m_vScale)
+	, m_pCollider(nullptr)
+	, m_pAnimator(nullptr)
+	, m_bAlive(true)
+{
+	if (_origin.m_pCollider)
+	{
+		m_pCollider = new CCollider(*_origin.m_pCollider);
+		m_pCollider->m_pOwner = this;
+	}
+
+	if (_origin.m_pAnimator)
+	{
+		// Animator 복사생성자 추가 필요
+
+	}
 }
 
 CObject::~CObject()
 {
 	if (m_pCollider != nullptr)
 		delete m_pCollider;
+
+	//if (m_pAnimator != nullptr)
+	//	delete m_pAnimator;
 }
 
 void CObject::finalupdate()

@@ -19,6 +19,10 @@ public:
 	virtual void update();
 	virtual void render(HDC _dc);
 
+	virtual void OnCollisionEnter(CCollider* _pOther);
+
+	CLONE(CMissile);
+
 public:
 	CMissile();
 	~CMissile();

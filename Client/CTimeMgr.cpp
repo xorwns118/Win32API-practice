@@ -38,6 +38,11 @@ void CTimeMgr::update()
 
 	// 이전 카운트 값을 현재값으로 갱신 (다음번의 계산을 위해)
 	m_llPrevCount = m_llCurCount;
+
+#ifdef _DEBUG
+	if (m_dDT > (1.f / 60.f))
+		m_dDT = (1.f / 60.f);
+#endif
 }
 
 void CTimeMgr::render()

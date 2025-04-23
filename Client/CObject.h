@@ -1,6 +1,7 @@
 #pragma once
 
-#include "CCollider.h"
+class CCollider;
+class CAnimator;
 
 class CObject
 {
@@ -10,7 +11,9 @@ private:
 	Vec2		m_vPos;
 	Vec2		m_vScale;
 
+	// Component
 	CCollider*	m_pCollider;
+	CAnimator*	m_pAnimator;
 
 	bool		m_bAlive;
 
@@ -41,11 +44,14 @@ public:
 
 	void component_render(HDC _dc);
 
+	virtual CObject* Clone() = 0;
+
 private:
 	void SetDead() { m_bAlive = false; }
 
 public:
 	CObject();
+	CObject(const CObject& _origin);
 	virtual ~CObject();
 
 	friend class CEventMgr;
