@@ -12,16 +12,30 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CCollider.h"
+#include "CAnimator.h"
+#include "CAnimation.h"
 
 CPlayer::CPlayer()
-	: m_pTex(nullptr)
 {
 	// Texture 로딩하기
-	m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	//m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
 	GetCollider()->SetScale(Vec2(20.f, 40.f));
+
+	// Texture 로딩하기
+	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\link.bmp");
+	
+	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
+	GetAnimator()->Play(L"WALK_DOWN", true);
+
+	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_DOWN");
+	for (UINT i = 0; i < pAnim->GetMaxFrame(); ++i)
+	{
+		pAnim->GetFrame(i).vOffset = Vec2(0.f, -20.f);
+	}
 }
 
 CPlayer::~CPlayer()
@@ -59,14 +73,16 @@ void CPlayer::update()
 	}
 
 	SetPos(vPos);
+
+	GetAnimator()->update();
 }
 
 void CPlayer::render(HDC _dc)
 {
-	int iWidth = (int)m_pTex->Width(); // 화면 밖으로 나가는경우가 음수일 수 있기 때문에 unsigned int 를 int 로 캐스팅
-	int iHeight = (int)m_pTex->Height();
+	//int iWidth = (int)m_pTex->Width(); // 화면 밖으로 나가는경우가 음수일 수 있기 때문에 unsigned int 를 int 로 캐스팅
+	//int iHeight = (int)m_pTex->Height();
 
-	Vec2 vPos = GetPos();
+	//Vec2 vPos = GetPos();
 
 	/*BitBlt(_dc
 		, int(vPos.x - (float)(iWidth / 2))
@@ -74,11 +90,11 @@ void CPlayer::render(HDC _dc)
 		, iWidth, iHeight, m_pTex->GetDC()
 		, 0, 0, SRCCOPY);*/
 
-	TransparentBlt(_dc
+	/*TransparentBlt(_dc
 		, int(vPos.x - (float)(iWidth / 2))
 		, int(vPos.y - (float)(iHeight / 2))
 		, iWidth, iHeight, m_pTex->GetDC()
-		, 0, 0, iWidth, iHeight, RGB(255, 0, 255)); 
+		, 0, 0, iWidth, iHeight, RGB(255, 0, 255)); */
 
 	// TransparentBlt 함수 자체가 복사한다는 개념이기 때문에 SRCCOPY 와 같은 인자를 필요로 하지 않음.
 	// 대신 무시할 색상 RGB 매크로 입력

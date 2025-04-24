@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CCamera.h"
+
 class CCollider;
 class CAnimator;
 
@@ -28,10 +30,12 @@ public:
 	const wstring& GetName() { return m_strName; }
 
 	CCollider* GetCollider() { return m_pCollider; }
-
-	void CreateCollider();
+	CAnimator* GetAnimator() { return m_pAnimator; }
 
 	bool IsDead() { return !m_bAlive; }
+
+	void CreateCollider();
+	void CreateAnimator();
 
 	virtual void OnCollision(CCollider* _pOther) {}
 	virtual void OnCollisionEnter(CCollider* _pOther) {}

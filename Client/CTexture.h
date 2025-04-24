@@ -18,7 +18,7 @@ public:
 
 private:
 	CTexture();
-	~CTexture();
+	virtual ~CTexture();
 
 	friend class CResMgr;
 	// 아무나 동적할당 할 수 없게 ResMgr 와 friend 선언 후 관리

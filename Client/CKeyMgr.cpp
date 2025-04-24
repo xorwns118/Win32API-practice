@@ -38,6 +38,9 @@ int g_arrVK[(int)KEY::LAST] =
 	VK_RETURN,
 	VK_ESCAPE,
 
+	VK_LBUTTON,
+	VK_RBUTTON,
+
 	//LAST
 };
 
@@ -70,33 +73,47 @@ void CKeyMgr::update()
 	{
 		for (int i = 0; i < (int)KEY::LAST; ++i)
 		{
+			// 키가 눌려있었다.
 			if (GetAsyncKeyState(g_arrVK[i]) & 0x8000)
 			{
 				if (m_vecKey[i].bPrevPush)
 				{
+					// 이전에도 눌려있었다.
 					m_vecKey[i].eState = KEY_STATE::HOLD;
 				}
 				else
 				{
+					// 이전에는 눌려있지 않았다.
 					m_vecKey[i].eState = KEY_STATE::TAP;
 				}
 
 				m_vecKey[i].bPrevPush = true;
 			}
+			// 키가 안눌려있었다.
 			else
 			{
 				if (m_vecKey[i].bPrevPush)
 				{
+					// 이전에 눌려있었다.
 					m_vecKey[i].eState = KEY_STATE::AWAY;
 				}
 				else
 				{
+					// 이전에도 눌려있지 않았다.
 					m_vecKey[i].eState = KEY_STATE::NONE;
 				}
 
 				m_vecKey[i].bPrevPush = false;
 			}
 		}
+
+		// Mouse 위치 계산
+		POINT ptPos = {};
+		GetCursorPos(&ptPos);
+
+		ScreenToClient(CCore::GetInst()->GetMainHWnd(), &ptPos);
+
+		m_vCurMousePos = Vec2((float)ptPos.x, (float)ptPos.y);
 	}
 	// 윈도우 포커싱 해제 상태
 	else

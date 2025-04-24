@@ -3,6 +3,7 @@
 
 #include "CObject.h"
 #include "CCore.h"
+#include "CCamera.h"
 
 #include "SelectGDI.h"
 
@@ -23,6 +24,7 @@ CCollider::CCollider(const CCollider& _origin)
 	, m_vOffsetPos(_origin.m_vOffsetPos)
 	, m_vScale(_origin.m_vScale)
 	, m_iID(g_iNextID++)
+	, m_iCol(0)
 {
 
 }
@@ -50,11 +52,13 @@ void CCollider::render(HDC _dc)
 	SelectGDI p(_dc, ePen);
 	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 
+	Vec2 vRenderPos = CCamera::GetInst()->GetRenderPos(m_vFinalPos);
+
 	Rectangle(_dc
-		, (int)(m_vFinalPos.x - m_vScale.x / 2.f)
-		, (int)(m_vFinalPos.y - m_vScale.y / 2.f)
-		, (int)(m_vFinalPos.x + m_vScale.x / 2.f)
-		, (int)(m_vFinalPos.y + m_vScale.y / 2.f));
+		, (int)(vRenderPos.x - m_vScale.x / 2.f)
+		, (int)(vRenderPos.y - m_vScale.y / 2.f)
+		, (int)(vRenderPos.x + m_vScale.x / 2.f)
+		, (int)(vRenderPos.y + m_vScale.y / 2.f));
 }
 
 void CCollider::OnCollision(CCollider* _pOther)

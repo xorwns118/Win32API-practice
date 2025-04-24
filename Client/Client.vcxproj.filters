@@ -86,6 +86,9 @@
     <Filter Include="Engine\07. Component\Collider">
       <UniqueIdentifier>{f56dba1c-464b-4c9d-b866-6b777b72bd8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\Camera">
+      <UniqueIdentifier>{a333f338-9512-44f4-b29e-c6bea3d7773f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -170,11 +173,14 @@
     <ClInclude Include="CCollider.h">
       <Filter>Engine\07. Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>Engine\07. Component\Animator\Animation</Filter>
+    </ClInclude>
     <ClInclude Include="CAnimator.h">
       <Filter>Engine\07. Component\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="CAnimation.h">
-      <Filter>Engine\07. Component\Animator\Animation</Filter>
+    <ClInclude Include="CCamera.h">
+      <Filter>Engine\03. Manager\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -264,8 +270,8 @@
     <ClCompile Include="CAnimation.cpp">
       <Filter>Engine\07. Component\Animator\Animation</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="33~36.md" />
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Engine\03. Manager\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
