@@ -11,6 +11,7 @@ CMissile::CMissile()
 	m_vDir.Normalize();
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(15.f, 15.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
 }
 
 CMissile::~CMissile()

@@ -22,7 +22,7 @@ CPlayer::CPlayer()
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
-	GetCollider()->SetScale(Vec2(20.f, 40.f));
+	GetCollider()->SetScale(Vec2(20.f, 40.f)); 
 
 	// Texture 로딩하기
 	CTexture* pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\link.bmp");

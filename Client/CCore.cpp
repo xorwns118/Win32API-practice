@@ -42,7 +42,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// 해상도에 맞게 윈도우 크기 조정
 	RECT rt = {0, 0, m_ptResolution.x, m_ptResolution.y};
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true); // 리턴값이 레지스터에 임시적으로 저장된 후 반환해주기 때문에 사이즈가 크면 성능 저하를 초래함 
-												// => 주소를 받아 직접 주는 방식으로 해결함
+													  // => 주소를 받아 직접 주는 방식으로 해결함
 	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 	
 	m_hDC = GetDC(m_hWnd); // 내부적으로 DC 가 생기면서 활용 가능, 메세지와 엮이면서 돌아가는 것이 아니라 해제 필요없이 프로그램 종료시 지우면 됨
