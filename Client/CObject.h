@@ -43,7 +43,7 @@ public:
 
 public:
 	virtual void update() = 0;
-	virtual void finalupdate() final; // => final 키워드 : 여기까지가 마지막이고, 그 아래의 오버라이딩 함수는 무시함. (자식 클래스에서 재정의 불가)
+	virtual void finalupdate(); // => final 키워드 : 여기까지가 마지막이고, 그 아래의 오버라이딩 함수는 무시함. (자식 클래스에서 재정의 불가)
 	virtual void render(HDC _dc);
 
 	void component_render(HDC _dc);

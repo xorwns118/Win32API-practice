@@ -4,6 +4,7 @@
 class CScene_Tool : public CScene
 {
 private:
+	CUI* m_pUI;
 
 public:
 	virtual void update();

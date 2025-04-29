@@ -6,6 +6,13 @@ struct Vec2
 	float y;
 
 public:
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
+	}
+
 	float Length()
 	{
 		return sqrt((x * x) + (y * y));
@@ -15,11 +22,11 @@ public:
 	{
 		float fLen = Length();
 
-		//assert(fLen != 0.f); // false 일 때 걸림
-		if (fLen == 0.f)
+		assert(fLen != 0.f); // false 일 때 걸림
+		/*if (fLen == 0.f)
 		{
 			return *this;
-		}
+		}*/
 
 		x /= fLen;
 		y /= fLen;
