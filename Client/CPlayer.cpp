@@ -18,7 +18,7 @@
 CPlayer::CPlayer()
 {
 	// Texture 로딩하기
-	//m_pTex = CResMgr::GetInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	//
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));

@@ -7,9 +7,13 @@
 
 #include "CPathMgr.h"
 
+#include "CCamera.h"
+#include "CCore.h"
+
 CScene::CScene()
 	: m_iTileX(0)
 	, m_iTileY(0)
+	, m_pPlayer(nullptr)
 {
 
 }
@@ -55,6 +59,12 @@ void CScene::render(HDC _dc)
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		if (i == (UINT)GROUP_TYPE::TILE)
+		{
+			render_tile(_dc);
+			continue;
+		}
+
 		vector<CObject*>::iterator iter = m_arrObj[i].begin();
 
 		for (; iter < m_arrObj[i].end();)
@@ -70,6 +80,40 @@ void CScene::render(HDC _dc)
 			}
 		}
 	}
+}
+
+void CScene::render_tile(HDC _dc)
+{
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	Vec2 vCamLook = CCamera::GetInst()->GetLookAt();
+	Vec2 vResolution = CCore::GetInst()->GetResolution();
+	Vec2 vLeftPos = vCamLook - vResolution / 2.f;
+
+	int iTileSize = TILE_SIZE;
+
+	int iLTCol = (int)vLeftPos.x / iTileSize;
+	int iLTRow = (int)vLeftPos.y / iTileSize;
+	int iLTIdx = (m_iTileX * iLTRow) + iLTCol;
+
+	int iClientWidth = ((int)vResolution.x / iTileSize) + 1;
+	int iClientHeight = ((int)vResolution.y / iTileSize) + 1;
+
+	for (int iCurRow = iLTRow; iCurRow < (iLTRow + iClientHeight); ++iCurRow)
+	{
+		for (int iCurCol = iLTCol; iCurCol < (iLTCol + iClientWidth); ++iCurCol)
+		{
+			if (iCurCol < 0 || (int)m_iTileX <= iCurCol
+				|| iCurRow < 0 || (int)m_iTileY <= iCurRow)
+				continue;
+
+			int iIdx = (m_iTileX * iCurRow) + iCurCol;
+
+			vecTile[iIdx]->render(_dc);
+		}
+	}
+
+	// 전체 배경 텍스쳐 한장 만들어서 BitBlt 으로 한번에 찍어내서 부분적으로 렌더링하면 좀 더 최적화된 상황을 만들 수 있음.
 }
 
 void CScene::DeleteGroup(GROUP_TYPE _eTarget)

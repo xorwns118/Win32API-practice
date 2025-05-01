@@ -12,6 +12,8 @@ private:
 	UINT				m_iTileX;	// 타일 가로 개수	
 	UINT				m_iTileY;	// 타일 세로 개수
 
+	CObject*			m_pPlayer;	// Player
+
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
@@ -19,19 +21,23 @@ public:
 	UINT GetTileX() { return m_iTileX; }
 	UINT GetTileY() { return m_iTileY; }
 
+	CObject* GetPlayer() { return m_pPlayer; }
+
 	virtual void update(); // 오브젝트 업데이트
 	virtual void finalupdate(); // 그 외 작업을 마무리해주는 업데이트
 	virtual void render(HDC _dc);
+
+	void render_tile(HDC _dc);
 
 	// 순수 가상함수, 부모 클래스에 해당하는 씬은 직접 객체생성이 불가능해짐 => 추상 클래스
 	virtual void Enter() = 0; // 해당 Scene 에 진입 시 호출
 	virtual void Exit() = 0;  // 해당 Scene 을 탈출 시 호출
 
 public:
-	void AddObject(CObject* _pObj, GROUP_TYPE _eType) // 클래스는 헤더에 구현하면 함수 호출 비용이 드는것이 아닌 복사 붙여넣기 효과
-	{
-		m_arrObj[(UINT)_eType].push_back(_pObj);
-	}
+	// 클래스는 헤더에 구현하면 함수 호출 비용이 드는것이 아닌 복사 붙여넣기 효과
+	void AddObject(CObject* _pObj, GROUP_TYPE _eType) { m_arrObj[(UINT)_eType].push_back(_pObj); }
+	void RegisterPlayer(CObject* _pPlayer) { m_pPlayer = _pPlayer; }
+
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType) { return m_arrObj[(UINT)_eType]; }
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();
