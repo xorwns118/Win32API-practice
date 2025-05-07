@@ -37,7 +37,7 @@ void CTraceState::update()
 	{
 		ChangeAIState(GetAI(), MON_STATE::IDLE);
 	}
-} // AStar?
+} // A*?
 
 void CTraceState::Enter()
 {
